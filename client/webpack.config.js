@@ -20,7 +20,7 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         // specifying html template file
-        template: "./src/index.html",
+        template: "./index.html",
         // outputing file name
         filename: "index.html"
       }),
@@ -34,7 +34,7 @@ module.exports = () => {
         crossorigin: "use-credentials",  //can be null
         icons: [
           {
-            src: path.resolve("src/images/icon.png"),  //do not need ./ when providing path because of path.resolve()
+            src: path.resolve("src/images/logo.png"),  //do not need ./ when providing path because of path.resolve()
             sizes: [96, 128, 192, 256, 384, 512]  //multiple sizes
           }
         ]
@@ -42,7 +42,7 @@ module.exports = () => {
 
 
       new InjectManifest({
-        swSrc: "./src/sw.js",  //specifying our service worker file
+        swSrc: "./src-sw.js",  //specifying our service worker file
         swDest: "service-worker.js"  //the asset name of the service worker file that will be created by this plugin
       }),
       
