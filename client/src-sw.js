@@ -27,4 +27,19 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
-registerRoute();
+registerRoute(
+  ({request}) => request.destination === "style" || request.destination === "script" || request.destination === "image",
+
+  new StaleWhileRevalidate({
+    cacheName: "assets-cache",
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200]
+      })
+    ]
+  })
+);
+
+
+// Offline fallback foir non-navigational routes
+// offlineFallback({pageFallback: "/offline.html"})
